@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>CosmicAI – Free AI Horoscope & Cosmic Destiny Readings</title>
+    <meta name="description" content="Get your free personalized AI horoscope reading. Daily predictions for love, money, career and destiny powered by AI.">
+    <meta name="keywords" content="horoscope, astrology, zodiac, AI horoscope, free horoscope, daily horoscope, love reading">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cosmicai.example.com/">
+    <meta property="og:title" content="CosmicAI – Free AI Horoscope & Cosmic Destiny Readings">
+    <meta property="og:description" content="Discover your cosmic destiny with our AI-powered astrology readings.">
+    <meta property="og:image" content="https://picsum.photos/seed/cosmic/1200/630">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cosmicai.example.com/">
+    <meta property="twitter:title" content="CosmicAI – Free AI Horoscope & Cosmic Destiny Readings">
+    <meta property="twitter:description" content="Discover your cosmic destiny with our AI-powered astrology readings.">
+    <meta property="twitter:image" content="https://picsum.photos/seed/cosmic/1200/630">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --deep-black: #050505;
+            --cosmic-purple: #2d0a4e;
+            --neon-purple: #bc13fe;
+            --gold: #ffd700;
+            --gold-glow: #ffcc00;
+            --text-light: #e0e0e0;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--deep-black);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Starfield Background */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, var(--cosmic-purple) 0%, var(--deep-black) 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Layout Containers */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Header & Logo */
+        header {
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
+            cursor: pointer;
+        }
+
+        /* API Key Input */
+        .api-key-container {
+            background: var(--glass);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .api-key-container input {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 0.8rem;
+            width: 200px;
+            outline: none;
+        }
+
+        .api-key-container .lock-icon {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+            max-width: 600px;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--cosmic-purple), var(--neon-purple));
+            color: white;
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(188, 19, 254, 0.7);
+        }
+
+        .btn-gold {
+            background: linear-gradient(45deg, #b8860b, var(--gold));
+            color: var(--deep-black);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+        }
+
+        /* Ad Slots */
+        .ad-slot {
+            width: 100%;
+            max-width: 728px;
+            height: 90px;
+            background: rgba(255, 255, 255, 0.03);
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+            border-radius: 8px;
+        }
+
+        /* Form Section */
+        .reading-form {
+            background: var(--glass);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--neon-purple);
+        }
+
+        /* Results Section */
+        #results-section {
+            display: none;
+            margin-top: 40px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, rgba(45, 10, 78, 0.4), rgba(5, 5, 5, 0.9));
+            padding: 40px;
+            border-radius: 24px;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(188, 19, 254, 0.2);
+        }
+
+        .result-content {
+            white-space: pre-wrap;
+            margin-bottom: 30px;
+        }
+
+        .lucky-numbers {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .lucky-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: var(--deep-black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        .compatibility-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-purple), var(--gold));
+            width: 0%;
+            transition: width 2s ease-out;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Zodiac Grid */
+        .zodiac-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .zodiac-card {
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .zodiac-card:hover {
+            transform: scale(1.05);
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .zodiac-symbol {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .zodiac-name {
+            font-weight: 600;
+            color: var(--gold);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .step-card {
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--glass-border);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--glass);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .stars {
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .avatar {
+            font-size: 1.5rem;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 20px 0;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding-bottom: 0;
+            opacity: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding-bottom: 20px;
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 60px 0 20px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            margin-top: 40px;
+        }
+
+        /* Loading Spinner */
+        #loader {
+            display: none;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(188, 19, 254, 0.1);
+            border-top: 5px solid var(--neon-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .zodiac-grid { grid-template-columns: repeat(3, 1fr); }
+            .logo { font-size: 1.8rem; }
+            .api-key-container input { width: 120px; }
+        }
+
+        @media (max-width: 480px) {
+            .zodiac-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-links { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="starfield"></div>
+
+    <header>
+        <div class="container">
+            <div class="logo" onclick="window.scrollTo(0,0)">🔮 CosmicAI</div>
+            <div class="api-key-container">
+                <span class="lock-icon">🔒</span>
+                <input type="password" id="gemini-api-key" placeholder="Paste Gemini API Key..." onchange="saveApiKey()">
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Discover Your Cosmic Destiny</h1>
+                <p>AI-powered readings personalized just for you. The stars have a message, are you ready to hear it?</p>
+                <a href="#reading-form" class="btn btn-primary">Get My Free Reading</a>
+            </div>
+        </section>
+
+        <!-- Ad Slot Top -->
+        <div class="container">
+            <div id="ad-top" class="ad-slot">
+                <!-- Google AdSense Ad Unit Here -->
+                ADVERTISEMENT
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <section id="reading-form">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 40px;">Personal Reading Form</h2>
+                <div class="reading-form">
+                    <div class="form-group">
+                        <label for="user-name">First Name</label>
+                        <input type="text" id="user-name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="birth-date">Date of Birth</label>
+                        <input type="date" id="birth-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="star-sign">Select Star Sign</label>
+                        <select id="star-sign">
+                            <option value="Aries">♈ Aries (Mar 21 - Apr 19)</option>
+                            <option value="Taurus">♉ Taurus (Apr 20 - May 20)</option>
+                            <option value="Gemini">♊ Gemini (May 21 - Jun 20)</option>
+                            <option value="Cancer">♋ Cancer (Jun 21 - Jul 22)</option>
+                            <option value="Leo">♌ Leo (Jul 23 - Aug 22)</option>
+                            <option value="Virgo">♍ Virgo (Aug 23 - Sep 22)</option>
+                            <option value="Libra">♎ Libra (Sep 23 - Oct 22)</option>
+                            <option value="Scorpio">♏ Scorpio (Oct 23 - Nov 21)</option>
+                            <option value="Sagittarius">♐ Sagittarius (Nov 22 - Dec 21)</option>
+                            <option value="Capricorn">♑ Capricorn (Dec 22 - Jan 19)</option>
+                            <option value="Aquarius">♒ Aquarius (Jan 20 - Feb 18)</option>
+                            <option value="Pisces">♓ Pisces (Feb 19 - Mar 20)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reading-type">Reading Type</label>
+                        <select id="reading-type">
+                            <option value="Today's Horoscope">Today's Horoscope</option>
+                            <option value="Love Reading">Love Reading</option>
+                            <option value="Career Reading">Career Reading</option>
+                            <option value="Full Life Reading">Full Life Reading</option>
+                            <option value="Celebrity Twin Reading">Celebrity Twin Reading</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-question">What's on your mind? (Optional)</label>
+                        <textarea id="user-question" rows="3" placeholder="Ask the stars a specific question..."></textarea>
+                    </div>
+                    <button class="btn btn-gold w-full" style="width: 100%;" onclick="generateReading()">✨ Reveal My Destiny</button>
+                </div>
+
+                <!-- Loader -->
+                <div id="loader">
+                    <div class="spinner"></div>
+                    <p>The stars are aligning...</p>
+                </div>
+
+                <!-- Results -->
+                <div id="results-section">
+                    <div class="result-card">
+                        <div id="result-text" class="result-content"></div>
+                        
+                        <h3 style="text-align: center; font-size: 1rem; margin-bottom: 15px;">Your Lucky Numbers</h3>
+                        <div class="lucky-numbers" id="lucky-numbers">
+                            <!-- JS will inject numbers -->
+                        </div>
+
+                        <div class="compatibility-container">
+                            <p id="compatibility-text">Compatibility Score</p>
+                            <div class="progress-bar">
+                                <div id="compatibility-fill" class="progress-fill"></div>
+                            </div>
+                        </div>
+
+                        <div class="share-buttons">
+                            <button class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;" onclick="shareWhatsApp()">Share to WhatsApp</button>
+                            <button class="btn btn-gold" style="padding: 10px 20px; font-size: 0.9rem;" onclick="copyReading()">Copy Reading</button>
+                            <button class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem; background: #1DA1F2;" onclick="shareTwitter()">Share to X</button>
+                        </div>
+                        <p id="share-msg" style="text-align: center; margin-top: 15px; color: var(--gold); display: none;">Your friends are going to be shook! 😱</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Slot Middle -->
+        <div class="container">
+            <div id="ad-middle" class="ad-slot">
+                <!-- Google AdSense Ad Unit Here -->
+                ADVERTISEMENT
+            </div>
+        </div>
+
+        <!-- Zodiac Grid -->
+        <section>
+            <div class="container">
+                <h2 style="text-align: center;">Quick Daily Energy Check ⚡</h2>
+                <div class="zodiac-grid">
+                    <div class="zodiac-card" onclick="quickFill('Aries')">
+                        <span class="zodiac-symbol">♈</span>
+                        <span class="zodiac-name">Aries</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Taurus')">
+                        <span class="zodiac-symbol">♉</span>
+                        <span class="zodiac-name">Taurus</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Gemini')">
+                        <span class="zodiac-symbol">♊</span>
+                        <span class="zodiac-name">Gemini</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Cancer')">
+                        <span class="zodiac-symbol">♋</span>
+                        <span class="zodiac-name">Cancer</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Leo')">
+                        <span class="zodiac-symbol">♌</span>
+                        <span class="zodiac-name">Leo</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Virgo')">
+                        <span class="zodiac-symbol">♍</span>
+                        <span class="zodiac-name">Virgo</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Libra')">
+                        <span class="zodiac-symbol">♎</span>
+                        <span class="zodiac-name">Libra</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Scorpio')">
+                        <span class="zodiac-symbol">♏</span>
+                        <span class="zodiac-name">Scorpio</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Sagittarius')">
+                        <span class="zodiac-symbol">♐</span>
+                        <span class="zodiac-name">Sagittarius</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Capricorn')">
+                        <span class="zodiac-symbol">♑</span>
+                        <span class="zodiac-name">Capricorn</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Aquarius')">
+                        <span class="zodiac-symbol">♒</span>
+                        <span class="zodiac-name">Aquarius</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                    <div class="zodiac-card" onclick="quickFill('Pisces')">
+                        <span class="zodiac-symbol">♓</span>
+                        <span class="zodiac-name">Pisces</span>
+                        <button class="btn btn-primary" style="padding: 5px 15px; font-size: 0.7rem;">Check Energy</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section style="background: rgba(255,255,255,0.02);">
+            <div class="container">
+                <h2 style="text-align: center;">How It Works</h2>
+                <div class="steps">
+                    <div class="step-card">
+                        <span class="step-icon">📝</span>
+                        <h3>Enter Details</h3>
+                        <p>Provide your name, birth date, and star sign for a personalized alignment check.</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-icon">🧠</span>
+                        <h3>AI Reads The Stars</h3>
+                        <p>Our advanced CosmicAI analyzes planetary positions and your unique energy signature.</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-icon">✨</span>
+                        <h3>Get Your Reading</h3>
+                        <p>Receive a deeply personal and accurate reading about your destiny and future.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section>
+            <div class="container">
+                <h2 style="text-align: center;">What Seekers Say</h2>
+                <div class="testimonials">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"I was skeptical, but the career reading was spot on. I got a promotion exactly when it predicted!"</p>
+                        <div class="user-info">
+                            <span class="avatar">👩‍💼</span>
+                            <span>Sarah J.</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"The love reading helped me understand my partner so much better. Truly magical experience."</p>
+                        <div class="user-info">
+                            <span class="avatar">👩‍❤️‍👨</span>
+                            <span>Marcus L.</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"CosmicAI is my daily ritual now. It's like having a personal astrologer in my pocket."</p>
+                        <div class="user-info">
+                            <span class="avatar">🧘‍♀️</span>
+                            <span>Elena R.</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <p>"The celebrity twin reading was so fun! Apparently, I share energy with Zendaya. I'll take it!"</p>
+                        <div class="user-info">
+                            <span class="avatar">💅</span>
+                            <span>Chloe W.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section style="background: rgba(255,255,255,0.02);">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 40px;">Frequently Asked Questions</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            How accurate are the AI readings? <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            CosmicAI uses advanced language models trained on vast amounts of astrological data and planetary alignments to provide highly personalized and contextually relevant readings.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Is my data kept private? <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes, we do not store your personal details on our servers. Your API key is stored locally on your device, and your reading is generated on-the-fly.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Can I use this for major life decisions? <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            While our readings are highly insightful, they are intended for entertainment purposes only. Always use your own judgment for major life decisions.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            How often should I check my reading? <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Daily readings are recommended as planetary energies shift constantly. Love and Career readings can be checked whenever you feel a shift in those areas.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            What is a Celebrity Cosmic Twin? <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            It's a fun feature where our AI matches your current astrological energy with a well-known public figure who shares similar traits or planetary influences.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Is CosmicAI free to use? <span>+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes! Our platform is free. We only require you to provide your own Gemini API key to power the personalized AI generation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Slot Bottom -->
+        <div class="container">
+            <div id="ad-bottom" class="ad-slot">
+                <!-- Google AdSense Ad Unit Here -->
+                ADVERTISEMENT
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo">🔮 CosmicAI</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About AI Astrology</a>
+            </div>
+            <p class="disclaimer">
+                Disclaimer: All readings generated by CosmicAI are for entertainment purposes only. 
+                Astrology is not a substitute for professional advice in medical, legal, or financial matters.
+            </p>
+            <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.4;">&copy; 2026 CosmicAI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Starfield Animation
+        function createStars() {
+            const starfield = document.getElementById('starfield');
+            const count = 150;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.setProperty('--duration', `${2 + Math.random() * 4}s`);
+                starfield.appendChild(star);
+            }
+        }
+        createStars();
+
+        // API Key Management
+        function saveApiKey() {
+            const key = document.getElementById('gemini-api-key').value;
+            localStorage.setItem('cosmic_gemini_key', key);
+        }
+
+        window.onload = () => {
+            const savedKey = localStorage.getItem('cosmic_gemini_key');
+            if (savedKey) {
+                document.getElementById('gemini-api-key').value = savedKey;
+            }
+        };
+
+        // FAQ Toggle
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            document.querySelectorAll('.faq-question span').forEach(s => s.innerText = '+');
+
+            if (!isActive) {
+                item.classList.add('active');
+                btn.querySelector('span').innerText = '-';
+            }
+        }
+
+        // Quick Fill from Zodiac Grid
+        function quickFill(sign) {
+            document.getElementById('star-sign').value = sign;
+            document.getElementById('reading-form').scrollIntoView();
+        }
+
+        // Generate Reading
+        async function generateReading() {
+            const apiKey = localStorage.getItem('cosmic_gemini_key');
+            if (!apiKey) {
+                alert('Please enter your Gemini API Key at the top of the page first!');
+                window.scrollTo(0, 0);
+                return;
+            }
+
+            const name = document.getElementById('user-name').value || 'Seeker';
+            const birthdate = document.getElementById('birth-date').value || 'Unknown';
+            const sign = document.getElementById('star-sign').value;
+            const readingType = document.getElementById('reading-type').value;
+            const question = document.getElementById('user-question').value || 'What do the stars have in store for me?';
+
+            // Show loader, hide results
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('results-section').style.display = 'none';
+            document.getElementById('reading-form').scrollIntoView();
+
+            const prompt = `You are CosmicAI, the world's most mystical and accurate AI astrologer. 
+Generate a deeply personal, dramatic, and inspiring ${readingType} for:
+Name: ${name}, Star Sign: ${sign}, Birth Date: ${birthdate}, 
+Their question: ${question}. 
+
+Format your response with these sections clearly labeled:
+🌟 COSMIC GREETING (personal welcome using their name)
+🔮 YOUR COSMIC ENERGY TODAY (4 sentences about their energy)
+❤️ LOVE & RELATIONSHIPS (3 sentences)
+💰 MONEY & CAREER (3 sentences)  
+⚡ WARNING FROM THE STARS (1 dramatic warning)
+🍀 YOUR LUCKY ELEMENTS (lucky number, lucky color, lucky day)
+⭐ YOUR CELEBRITY COSMIC TWIN (name a celebrity with similar energy)
+💫 YOUR POWER MANTRA (one powerful sentence to repeat today)
+🎯 COMPATIBILITY SCORE WITH [random sign]: [number]%
+
+Make it feel magical, personal, emotional and highly shareable. 
+Use emojis generously. Make it at least 300 words.`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: prompt }] }]
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error.message);
+                }
+
+                const resultText = data.candidates[0].content.parts[0].text;
+                displayResults(resultText);
+
+            } catch (error) {
+                alert('Error connecting to the stars: ' + error.message);
+                document.getElementById('loader').style.display = 'none';
+            }
+        }
+
+        function displayResults(text) {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('results-section').style.display = 'block';
+            
+            const resultDiv = document.getElementById('result-text');
+            resultDiv.innerHTML = text.replace(/\n/g, '<br>');
+
+            // Generate random lucky numbers
+            const luckyDiv = document.getElementById('lucky-numbers');
+            luckyDiv.innerHTML = '';
+            for (let i = 0; i < 4; i++) {
+                const num = Math.floor(Math.random() * 99) + 1;
+                const span = document.createElement('div');
+                span.className = 'lucky-number';
+                span.innerText = num;
+                luckyDiv.appendChild(span);
+            }
+
+            // Compatibility Meter
+            const score = Math.floor(Math.random() * 40) + 60; // 60-100%
+            document.getElementById('compatibility-fill').style.width = score + '%';
+            
+            const signs = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+            const randomSign = signs[Math.floor(Math.random() * signs.length)];
+            document.getElementById('compatibility-text').innerText = `Compatibility with ${randomSign}: ${score}%`;
+
+            document.getElementById('results-section').scrollIntoView();
+        }
+
+        // Sharing Logic
+        function shareWhatsApp() {
+            const text = document.getElementById('result-text').innerText.substring(0, 500) + "... Read more at CosmicAI!";
+            const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+            showShareMsg();
+        }
+
+        function shareTwitter() {
+            const text = "I just got my AI horoscope from CosmicAI! The stars are aligned. ✨🔮 #CosmicAI #Astrology";
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+            showShareMsg();
+        }
+
+        function copyReading() {
+            const text = document.getElementById('result-text').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Reading copied to clipboard!');
+                showShareMsg();
+            });
+        }
+
+        function showShareMsg() {
+            const msg = document.getElementById('share-msg');
+            msg.style.display = 'block';
+            setTimeout(() => msg.style.display = 'none', 5000);
+        }
+    </script>
+</body>
+</html>
